@@ -93,23 +93,13 @@
             </div>
         </div>
 -->
-        <h3>Normal PHP</h3>
+        <!-- Blade command template: equal to above php code  -->
         <ul>
-            <?php foreach ($tasks as $task): ?>
-                <li>
-                    <?php echo $task; ?>
-                </li>
-            <?php endforeach; ?>
-
-        </ul>
-        <h3>Blade template</h3>
-        <ul>
-        <!--  Blade command template: equal to above php code -->
-            @foreach ($tasks as $task)
-                <li>
-                    {{ $task }}
-                </li>    
-            @endforeach
+            <li>
+                <h4>
+                    {{ $task->body }}
+                </h4>
+            </li>    
         </ul>
     </body>
 </html>
