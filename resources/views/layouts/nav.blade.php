@@ -1,0 +1,1 @@
+<div>This is navigation bar blade file</div>

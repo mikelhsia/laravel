@@ -67,3 +67,10 @@ Route::get('/', function () {
 //     return view("tasks.show", compact("task"));
 // });
 
+/***********************************************
+// Route with layout file
+************************************************/
+// controller ==> PostsController
+// Eloquent model ==> Post
+// Migration ==> create_posts_table
+Route::get('/posts', 'PostsController@index');
