@@ -11,9 +11,10 @@ class TasksController extends Controller
 	    $tasks = Task::all(); // Eloquent method
 	    return view("tasks.index", compact("tasks"));
 	}
-
-	public function show ($id) {
-	    $task = Task::find($id); // Eloquent method
+	// Route model binding, variable name needs to be the same in the web.php
+	public function show (Task $task) {  // will do Task:find(wildcard);
+	// public function show ($id) {
+	    // $task = Task::find($id); // Eloquent method
 	    return view("tasks.show", compact("task"));
 	}
 }
