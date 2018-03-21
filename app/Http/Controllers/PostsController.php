@@ -16,6 +16,12 @@ class PostsController extends Controller
     }
 
     public function store () {
+    	// 0. Validate the data (Server side validation)
+    	$this->validate(request(), [
+    		'title' => 'required|min:3|max:50',
+    		'body' => 'required|max:255'
+    	]);
+
     	// 1. Create a new post using request data
     	// dd(request()->all());
     	// dd(request('title'));

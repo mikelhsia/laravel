@@ -7,17 +7,19 @@
 	<div class="form-group">
 		<label for="title">Title</label>
 		<div>
-			<input type="text" id="title" name="title" required="">
+			<input type="text" id="title" name="title" required>
+			<!-- Client side (browser) validation -->
 		</div>
 	</div>
 	<div class="mb-3">
 		<label for="body">Body</label>
 		<div>
-			<textarea id="body" name="body"></textarea>
+			<textarea id="body" name="body" required></textarea>
 		</div>
 	</div>
 	<hr class="mb-4">
 	<button class="btn btn-primary type="submit">Publish</button>
+	@include('layouts.errors')
 </form>
 @endsection
 
