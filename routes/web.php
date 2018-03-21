@@ -19,7 +19,19 @@ use App\Task;
 Route::get('/tasks', 'TasksController@index');
 Route::get('/tasks/{task}', 'TasksController@show');
 
-
+/***********************************************
+// Route with layout file
+************************************************/
+// Eloquent model ==> Post
+// controller ==> PostsController
+// Migration ==> create_posts_table
+// Create all three by using "php artisan make:model {name} -mc -r"
+//                      -m : migration
+//                      -c : controller
+//                      -r : resourceful controller
+Route::get('/posts', 'PostsController@index');
+Route::get('/posts/create', 'PostsController@create');
+Route::post('/posts', 'PostsController@store');
 
 /***********************************************
 // Route without controller
@@ -66,11 +78,3 @@ Route::get('/', function () {
 //     // dd($task);
 //     return view("tasks.show", compact("task"));
 // });
-
-/***********************************************
-// Route with layout file
-************************************************/
-// controller ==> PostsController
-// Eloquent model ==> Post
-// Migration ==> create_posts_table
-Route::get('/posts', 'PostsController@index');

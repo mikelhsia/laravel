@@ -1,1 +1,1 @@
-<div>This is navigation bar blade file</div>
+<div style="width: 100%; height: 50px; background: lightblue; position: fixed; bottom: 0px;">This is navigation bar blade file</div>
