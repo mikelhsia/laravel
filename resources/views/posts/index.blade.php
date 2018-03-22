@@ -1,7 +1,11 @@
 @extends('layout')
 
 @section('content')
-	This is the layout testing
+	<div class='title'>This is the layout content header</div>
+	<hr>
+	@foreach ($posts as $post)
+		@include('posts.post')
+	@endforeach
 @endsection
 
 @section('footer')
