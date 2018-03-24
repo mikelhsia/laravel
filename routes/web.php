@@ -80,3 +80,15 @@ Route::get('/', function () {
 //     // dd($task);
 //     return view("tasks.show", compact("task"));
 // });
+
+Auth::routes();
+// Redirect to login page
+Route::get('/home', 'HomeController@index')->name('home');  // Name this route as home page
+
+Route::get('/register', 'RegistrationController@create');
+Route::post('/register', 'RegistrationController@store');
+
+Route::get('/login', 'SessionController@create');
+Route::post('/login', 'SessionController@store');
+
+Route::get('/logout', 'SessionController@destroy');

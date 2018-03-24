@@ -5,6 +5,8 @@
 		</h3>
 	</div>
 	<div style="text-decoration: underline;">
+		<span style='text-decoration: none; color: blue;'> {{ $post->user()['name'] }}</span>
+		 on 
 		<!-- Carbon Library - https://carbon.nesbot.com/docs/ -->
 		{{ $post->created_at->toFormattedDateString() }}
 	</div>

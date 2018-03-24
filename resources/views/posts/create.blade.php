@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<hr class="mb-4">
-	<button class="btn btn-primary type="submit">Publish</button>
+	<button class="btn btn-primary" type="submit">Publish</button>
 	@include('layouts.errors')
 </form>
 @endsection
