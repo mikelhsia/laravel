@@ -36,11 +36,7 @@ class PostsController extends Controller
         ->filter(request(['month', 'year']))
         ->get();
 
-        $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
-        ->groupBy('year', 'month')
-        ->orderByRaw('min(created_at) desc')
-        ->get()
-        ->toArray();
+        $archives = Post::archives();
 
         // dd($archives);
 
@@ -48,7 +44,9 @@ class PostsController extends Controller
     }
 
     public function create () {
-    	return view('posts.create');
+        $archives = Post::archives();
+
+    	return view('posts.create', compact('archives'));
     }
 
     public function show(Post $post) {

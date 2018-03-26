@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Listen to when a page load, then register a callback function
+        view()->composer('posts.show', function ($view) {
+            $view->with('archives', \App\Post::archives());
+        });
     }
 
     /**

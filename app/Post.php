@@ -35,17 +35,28 @@ class Post extends Model
         return User::find($this->user_id);
     }
 
-    // What is this???
+    // Using scope with laravl 5: https://www.easylaravelbook.com/blog/using-scopes-with-laravel-5/
     public function scopeFilter ($query, $filters) {
 
-        if ($filters['month']) {
-            $query->whereMonth('created_at', $filters['month']);
-        }
+        // dd($filters);
+        if ($filters) {
+            if ($filters['month']) {
+                $query->whereMonth('created_at', $filters['month']);
+            }
 
-        if ($filters['year']) {
-            $query->whereYear('created_at', $filters['year']);
-        }
+            if ($filters['year']) {
+                $query->whereYear('created_at', $filters['year']);
+            }
 
-        $posts = $query->get();
+            $posts = $query->get();
+        }
+    }
+
+    public static function archives () {
+        return static::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
+        ->groupBy('year', 'month')
+        ->orderByRaw('min(created_at) desc')
+        ->get()
+        ->toArray();
     }
 }
