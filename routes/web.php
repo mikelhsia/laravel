@@ -54,9 +54,9 @@ Route::get('/', function () {
 
     /* Method 4: Fetch variables by array */
     $tasks = [
-    	'Go to store front',
-    	'Finish my screenshot',
-    	'Clean the house'];
+        'go to store front',
+        'finish my screenshot',
+        'clean the house'];
     return view("welcome", compact("tasks"));
 
 });

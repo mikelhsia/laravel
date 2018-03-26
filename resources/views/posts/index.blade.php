@@ -16,7 +16,7 @@
 				@foreach ($archives as $archive)
 					{{-- expr --}}
 					<li>
-						{{ $archive['year'] }}-{{ $archive['month'] }} (<a href="#">{{ $archive['published'] }}</a>)
+						{{ $archive['year'] }}-{{ $archive['month'] }} (<a href="/posts?month={{ $archive['month'] }}&year={{ $archive['year'] }}">{{ $archive['published'] }}</a>)
 					</li>
 				@endforeach
 			</ul>

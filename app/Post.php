@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Comment;
 use App\User;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -32,5 +33,19 @@ class Post extends Model
     public function user() {
         // return $this->belongsTo(User::class);
         return User::find($this->user_id);
+    }
+
+    // What is this???
+    public function scopeFilter ($query, $filters) {
+
+        if ($filters['month']) {
+            $query->whereMonth('created_at', $filters['month']);
+        }
+
+        if ($filters['year']) {
+            $query->whereYear('created_at', $filters['year']);
+        }
+
+        $posts = $query->get();
     }
 }

@@ -13,10 +13,32 @@ class PostsController extends Controller
     }
 
     public function index () {
-    	$posts = Post::all();
+        // Method 1
+        /*
+    	// $posts = Post::all(); // Return collection
+        $posts = Post::latest(); // Return Builder
+
+        if (request('month')) {
+            $posts->whereMonth('created_at', request('month'));
+        }
+
+        if (request('year')) {
+            $posts->whereYear('created_at', request('year'));
+        }
+
+        if (request('month') || request('year')) {
+            $posts = $posts->get();
+        }
+        */
+
+        // Method 2
+        $posts = Post::latest()
+        ->filter(request(['month', 'year']))
+        ->get();
 
         $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
         ->groupBy('year', 'month')
+        ->orderByRaw('min(created_at) desc')
         ->get()
         ->toArray();
 
