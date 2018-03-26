@@ -3,9 +3,25 @@
 @section('content')
 	<div class='title'>This is the layout content header</div>
 	<hr>
-	@foreach ($posts as $post)
-		@include('posts.post')
-	@endforeach
+	<div style="display: grid; grid-template-columns: 70% 30%;">
+		<div>
+			<h4>Posts</h4>
+			@foreach ($posts as $post)
+				@include('posts.post')
+			@endforeach
+		</div>
+		<div>
+			<h4>Archives</h4>
+			<ul>
+				@foreach ($archives as $archive)
+					{{-- expr --}}
+					<li>
+						{{ $archive['year'] }}-{{ $archive['month'] }} (<a href="#">{{ $archive['published'] }}</a>)
+					</li>
+				@endforeach
+			</ul>
+		</div>
+	</div>
 @endsection
 
 @section('footer')

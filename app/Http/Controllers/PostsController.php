@@ -14,7 +14,15 @@ class PostsController extends Controller
 
     public function index () {
     	$posts = Post::all();
-    	return view('posts.index', compact('posts'));
+
+        $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
+        ->groupBy('year', 'month')
+        ->get()
+        ->toArray();
+
+        // dd($archives);
+
+    	return view('posts.index', compact('posts', 'archives'));
     }
 
     public function create () {
