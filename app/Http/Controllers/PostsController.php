@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Repositories\Posts;
 
 class PostsController extends Controller
 {
@@ -11,10 +12,9 @@ class PostsController extends Controller
     public function __construct() {
         $this->middleware('auth')->except(['index', 'show']);
     }
-
+/*
+    // Method 1
     public function index () {
-        // Method 1
-        /*
     	// $posts = Post::all(); // Return collection
         $posts = Post::latest(); // Return Builder
 
@@ -29,9 +29,10 @@ class PostsController extends Controller
         if (request('month') || request('year')) {
             $posts = $posts->get();
         }
-        */
+    }
 
-        // Method 2
+    // Method 2
+    public function index () {
         $posts = Post::latest()
         ->filter(request(['month', 'year']))
         ->get();
@@ -40,7 +41,32 @@ class PostsController extends Controller
 
         // dd($archives);
 
-    	return view('posts.index', compact('posts', 'archives'));
+        return view('posts.index', compact('posts', 'archives'));
+    }
+
+    // Method 3: Using Repository injection
+    public function index () {
+        $archives = Post::archives();
+
+        $posts = (new \App\Repositories\Posts)->all();
+
+        return view('posts.index', compact('posts', 'archives'));
+
+    }
+*/
+
+    // Method 4: Automatic dependency / Automatic resolution
+    public function index (Posts $posts) {
+        // Dependency Injection to automatically generate a new instance
+        // dd($posts);
+
+        $archives = Post::archives();
+
+        // dd($posts);
+        $posts = $posts->all();
+
+        return view('posts.index', compact('posts', 'archives'));
+
     }
 
     public function create () {
