@@ -30,8 +30,10 @@ App::singleton('App\Billing\Stripe', function () {
 // or
 $stripe = app('App\Billing\Stripe');
 
-dd($stripe);
 */
+
+// Now it's getting value from AppServiceProvider::register()
+dd(resolve('App\Billing\Stripe'));
 
 /***********************************************
 // Route to controller instead of inline function
