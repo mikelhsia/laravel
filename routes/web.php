@@ -13,6 +13,26 @@
 
 use App\Task;
 
+/*
+// Bind into service container, and you register this class with service container
+App::bind('App\Billing\Stripe', function () {
+    return new \App\Billing\Stripe(config('services.stripe.secret'));
+});
+
+// Only generate single instance no matter how many time you try to new an instance
+App::singleton('App\Billing\Stripe', function () {
+    return new \App\Billing\Stripe(config('services.stripe.secret'));
+});
+
+// $stripe = App::make('App\Billing\Stripe');
+// or ps. resolve() is an alias of app()
+// $stripe = resolve('App\Billing\Stripe');
+// or
+$stripe = app('App\Billing\Stripe');
+
+dd($stripe);
+*/
+
 /***********************************************
 // Route to controller instead of inline function
 ************************************************/
