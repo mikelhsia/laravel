@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistrationForm;
 use Illuminate\Http\Request;
-use App\User;
-use App\Mail\Welcome;
 
 class RegistrationController extends Controller
 {
@@ -12,26 +11,29 @@ class RegistrationController extends Controller
     	return view('registration.create');
     }
 
-    public function store () {
+    public function store (RegistrationForm $form) {
     	// Validate the form
-    	$this->validate(request(), [
-    		'name' => 'required',
-    		'email' => 'required|email',
-    		'password' => 'max:16|min:6|confirmed' // confirmed is implied matches password_confirmation name
-       	]);
+        // Move to RegistrationForm.php
+//    	$this->validate(request(), [
+//    		'name' => 'required',
+//    		'email' => 'required|email',
+//    		'password' => 'max:16|min:6|confirmed' // confirmed is implied matches password_confirmation name
+//       	]);
 
-    	// Create and save the user
-    	$user = User::create([
-            'name' => request('name'), 
-            'email' => request('email'),
-            'password' => bcrypt(request('password'))
-        ]);
+//    	// Create and save the user
+//    	$user = User::create([
+//            'name' => request('name'),
+//            'email' => request('email'),
+//            'password' => bcrypt(request('password'))
+//        ]);
+//
+//    	// Sign them in
+//    	auth()->login($user);
+//
+//    	// Sending email
+//        \Mail::to($user)->send(new Welcome($user));
 
-    	// Sign them in
-    	auth()->login($user);
-
-    	// Sending email
-        \Mail::to($user)->send(new Welcome($user));
+        $form->persist();
 
     	// Redirect user to the homepage
     	return redirect()->home();
