@@ -35,6 +35,9 @@ class RegistrationController extends Controller
 
         $form->persist();
 
+        // Flash means session only stays at that page, refresh will cause it disappear
+        session()->flash('message', 'Thank you so much for signing up');
+
     	// Redirect user to the homepage
     	return redirect()->home();
     }

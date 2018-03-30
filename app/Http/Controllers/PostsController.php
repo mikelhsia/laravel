@@ -120,6 +120,9 @@ class PostsController extends Controller
             new Post(request(['title', 'body']))
         );
 
+        // Show a flash message
+        session()->flash('message', 'Your post has now been published.');
+
     	// 3. And then redirect to the application
     	return redirect('/posts');
     }

@@ -5,7 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                    @if ($flash = session('message'))
+                        <div id="flash-message" class="card-header">
+                            {{ $flash }}
+                        </div>
+                    @endif
+
 
                 <div class="card-body">
                     @if (session('status'))
@@ -20,4 +25,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+    @include('layouts.nav')
 @endsection

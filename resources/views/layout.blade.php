@@ -14,6 +14,12 @@
         <link href="/css/app.css" rel='stylesheet'>
     </head>
     <body>
+        @if ($flash = session('message'))
+            <div style="background: darkseagreen; color:darkgreen; border:1px solid seagreen;">
+                {{ $flash }}
+            </div>
+        @endif
+
     	@yield('content')
         @yield('footer')
     </body>
