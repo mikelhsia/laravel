@@ -33,7 +33,7 @@ $stripe = app('App\Billing\Stripe');
 */
 
 // Now it's getting value from AppServiceProvider::register()
-dd(resolve('App\Billing\Stripe'));
+//dd(resolve('App\Billing\Stripe'));
 
 /***********************************************
 // Route to controller instead of inline function
