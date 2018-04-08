@@ -20,6 +20,15 @@
 					</li>
 				@endforeach
 			</ul>
+			<h4>Tags</h4>
+			<ul>
+				@foreach ($tags as $tag)
+					{{-- expr --}}
+					<li>
+						<a href="/posts/tag/{{ $tag }}"> {{ $tag }}</a>
+					</li>
+				@endforeach
+			</ul>
 		</div>
 	</div>
 @endsection

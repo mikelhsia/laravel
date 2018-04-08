@@ -4,6 +4,13 @@
 <div style="display: grid; grid-template-columns: 70% 30%;">
 	<div>
 		<div class="title">{{ $post->title }}</div>
+        @if (count($post->tags))
+			<ul>
+				@foreach ($post->tags as $tag)
+					<a href="/posts/tag/{{ $tag->name }}">{{ $tag->name }}</a>
+				@endforeach
+			</ul>
+		@endif
 		<div class="body">{{ $post->body }}</div>
 		<hr>
 		<div class="comment">
@@ -46,6 +53,17 @@
 				</li>
 			@endforeach
 		</ul>
+		<div>
+			<h4>Tags</h4>
+			<ul>
+				@foreach ($tags as $tag)
+					{{-- expr --}}
+					<li>
+						<a href="/posts/tag/{{ $tag }}"> {{ $tag }}</a>
+					</li>
+				@endforeach
+			</ul>
+		</div>
 	</div>
 </div>
 @endsection

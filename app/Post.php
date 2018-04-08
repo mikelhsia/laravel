@@ -38,7 +38,7 @@ class Post extends Model
     // Using scope with laravl 5: https://www.easylaravelbook.com/blog/using-scopes-with-laravel-5/
     public function scopeFilter ($query, $filters) {
 
-        // dd($filters);
+//        dd($filters);
         if ($filters) {
             if ($filters['month']) {
                 $query->whereMonth('created_at', $filters['month']);
@@ -58,5 +58,12 @@ class Post extends Model
         ->orderByRaw('min(created_at) desc')
         ->get()
         ->toArray();
+    }
+
+    public function tags () {
+        // Many to many relationship
+        // Any post may have may tags
+        // Any tag may be applied to many posts
+        return $this->belongsToMany(Tag::class);
     }
 }

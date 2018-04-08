@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\AppServiceProvider;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Repositories\Posts;
 
 class PostsController extends Controller
@@ -61,22 +63,30 @@ class PostsController extends Controller
         // dd($posts);
 
         $archives = Post::archives();
+        $tags = Tag::has('posts')->pluck('name');
 
         // dd($posts);
         $posts = $posts->all();
 
-        return view('posts.index', compact('posts', 'archives'));
+        return view('posts.index', compact(['posts', 'archives', 'tags']));
 
     }
 
     public function create () {
         $archives = Post::archives();
+        $tags = Tag::has('posts')->pluck('name');
 
-    	return view('posts.create', compact('archives'));
+    	return view('posts.create', compact(['archives', 'tags']));
     }
 
     public function show(Post $post) {
-    	return view('posts.show', compact('post'));
+        $archives = Post::archives();
+        $tags = Tag::has('posts')->pluck('name');
+
+    	return view('posts.show', compact(['post', 'archives', 'tags']));
+
+//    	Right now the boot function in AppServiceProvider doesn't fire up
+//        return view('posts.show', compact('post'));
     }
 
     public function store () {
