@@ -1,63 +1,45 @@
 <template>
     <div class="flex-center position-ref full-height">
         <div class="content">
-            <div class="title m-b-md">
-                {{title}}
-            </div>
-            <div class="links">
-                <span class="subtitle">Data: {{author}}</span><br>
-                <span class="subtitle">Name: {{author.name}}</span><br>
-                <span class="subtitle">Role: {{author.role}}</span><br>
-                <span class="subtitle">Code: {{author.code}}</span><br>
+            <div class="m-b-md">
+                <h2 class="title m-b-md">
+                    Treclon
+                </h2>
+                <h3>
+                    Your efficent task planner
+                </h3>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        props: ['title', 'author']
-    };
+    export default {}
 </script>
 
 <style scoped>
-    html, body {
-        background-color: #fff;
-        color: #636b6f;
-        font-family: 'Raleway', sans-serif;
-        font-weight: 100;
-        height: 100vh;
-        margin: 0;
-    }
-
-    .full-height{
+    .full-height {
         height: 100vh;
     }
-
     .flex-center {
         align-items: center;
         display: flex;
         justify-content: center;
     }
-
     .position-ref {
         position: relative;
     }
-
     .top-right {
         position: absolute;
         right: 10px;
         top: 18px;
     }
-
     .content {
         text-align: center;
     }
-
     .title {
-        font-size: 84px;
+        font-size: 60px;
     }
-
     .links > a {
         color: #636b6f;
         padding: 0 25px;
@@ -67,8 +49,8 @@
         text-decoration: none;
         text-transform: uppercase;
     }
-
     .m-b-md {
         margin-bottom: 30px;
+        color: #000000;
     }
 </style>
