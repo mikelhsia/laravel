@@ -15038,8 +15038,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -15063,7 +15061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var category_id = this.categories[id].id;
             var order = this.categories[id].tasks.length;
 
-            axios.post('api/task', { user_id: user_id, name: name, order: order, categoory_id: categoory_id }).then(function (response) {
+            axios.post('api/task', { user_id: user_id, name: name, order: order, category_id: category_id }).then(function (response) {
                 _this.categories[id].tasks.push(response.data.data);
             });
         },
@@ -17146,7 +17144,7 @@ var render = function() {
                           "draggable",
                           {
                             attrs: { options: _vm.dragOptions, element: "div" },
-                            on: { end: _vm.changerOrder },
+                            on: { end: _vm.changeOrder },
                             model: {
                               value: element.tasks,
                               callback: function($$v) {
@@ -17220,7 +17218,7 @@ var render = function() {
                                             {
                                               attrs: { for: "checkbox" },
                                               on: {
-                                                dbclick: function($event) {
+                                                dblclick: function($event) {
                                                   _vm.editTask(task)
                                                 }
                                               }
@@ -17239,7 +17237,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "small-card" }, [
                           _c(
-                            "h4",
+                            "h5",
                             {
                               staticClass: "text-center",
                               on: {

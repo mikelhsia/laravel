@@ -3,26 +3,24 @@
         <div class="row justify-content-center">
             <draggable element="div" class="col-md-12" v-model="categories" :options="dragOptions">
                 <transition-group class="row">
-                    <div class="col-md-4" v-for="element, index in categories" :key="element.id">
+                    <div class="col-md-4" v-for="element,index in categories" :key="element.id">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">{{element.name}}</h4>
                             </div>
                             <div class="card-body card-body-dark">
-                                <draggable :options="dragOptions" element="div" @end="changerOrder" v-model="element.tasks">
+                                <draggable :options="dragOptions" element="div" @end="changeOrder" v-model="element.tasks">
                                     <transition-group :id="element.id">
-                                        <div v-for="task, index in element.tasks" :key="task.category_id+','+task.order" class="transit-1" :id="task.id">
+                                        <div v-for="task,index in element.tasks" :key="task.category_id+','+task.order" class="transit-1" :id="task.id">
                                             <div class="small-card">
-                                                <textarea v-if="task === editingTask" @keyup.enter="endEditing(task)"
-                                                          @blur="endEditing(task)" v-model="task.name"
-                                                          class="text-input"></textarea>
-                                                <label for="checkbox" v-if="task !== editingTask" @dbclick="editTask(task)">{{task.name}}</label>
+                                                <textarea v-if="task === editingTask" class="text-input" @keyup.enter="endEditing(task)" @blur="endEditing(task)" v-model="task.name"></textarea>
+                                                <label for="checkbox" v-if="task !== editingTask" @dblclick="editTask(task)">{{ task.name }}</label>
                                             </div>
                                         </div>
                                     </transition-group>
                                 </draggable>
                                 <div class="small-card">
-                                    <h4 class="text-center" @click="addNew(index)">Add new card</h4>
+                                    <h5 class="text-center" @click="addNew(index)">Add new card</h5>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +51,7 @@
                 let category_id = this.categories[id].id;
                 let order = this.categories[id].tasks.length;
 
-                axios.post('api/task', {user_id, name, order, categoory_id}).then(response => {
+                axios.post('api/task', {user_id, name, order, category_id}).then(response => {
                     this.categories[id].tasks.push(response.data.data);
                 });
             },
