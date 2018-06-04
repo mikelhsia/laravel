@@ -17636,6 +17636,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -17643,7 +17649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: "",
             email: "",
             password: "",
-            password_confirm: ""
+            password_confirmation: ""
         };
     },
 
@@ -17655,8 +17661,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             e.preventDefault();
 
-            console.log("Passwords do not match(" + this.password + "/" + this.passwordConfirm + ")");
-            if (this.password === this.password_confirm && this.password.length > 0) {
+            alert('Password:(' + this.password + '/' + this.password_confirmation);
+            if (this.password === this.password_confirmation && this.password.length > 0) {
                 axios.post('api/register', {
                     name: this.name,
                     email: this.email,
@@ -17667,29 +17673,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     localStorage.setItem('jwt', response.data.success.token);
 
                     if (localStorage.getItem('jwt') != null) {
-                        _this.$router.go('/board;');
+                        alert("Got jwt");
+                        _this.$router.go('/board');
                     }
                 }).catch(function (error) {
                     console.error(error);
                 });
             } else {
                 this.password = "";
-                this.password_confirm = "";
+                this.password_confirmation = "";
 
                 return alert('Passwords do not match');
             }
-        },
-
-        // beforeRouterEnter method which is called by the vue-router before loading a component.
-        // In this callback, we check if the user is already logged in and redirect to the application’s
-        // board if the user is.
-        beforeRouterEnter: function beforeRouterEnter(to, from, next) {
-            if (localStorage.getItem('jwt')) {
-                return next('board');
-            }
-
-            next();
         }
+    },
+    // beforeRouterEnter method which is called by the vue-router before loading a component.
+    // In this callback, we check if the user is already logged in and redirect to the application’s
+    // board if the user is.
+    beforeRouterEnter: function beforeRouterEnter(to, from, next) {
+        if (localStorage.getItem('jwt')) {
+            console.log('To board');
+            return next('board');
+        }
+
+        console.log('Not to board');
+        next();
     }
 });
 
@@ -17708,7 +17716,7 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [_vm._v("Register")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("form", { attrs: { action: "/register", method: "post" } }, [
+            _c("form", { attrs: { method: "POST", action: "/register" } }, [
               _c("div", { staticClass: "form-group row" }, [
                 _c(
                   "label",
@@ -17731,8 +17739,8 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "text",
                       id: "name",
+                      type: "text",
                       required: "",
                       autofocus: ""
                     },
@@ -17770,7 +17778,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "email", id: "email", required: "" },
+                    attrs: { id: "email", type: "email", required: "" },
                     domProps: { value: _vm.email },
                     on: {
                       input: function($event) {
@@ -17805,7 +17813,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "password", id: "password", required: "" },
+                    attrs: { id: "password", type: "password", required: "" },
                     domProps: { value: _vm.password },
                     on: {
                       input: function($event) {
@@ -17835,23 +17843,23 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.password_confirm,
-                        expression: "password_confirm"
+                        value: _vm.password_confirmation,
+                        expression: "password_confirmation"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "password",
                       id: "password-confirm",
+                      type: "password",
                       required: ""
                     },
-                    domProps: { value: _vm.password_confirm },
+                    domProps: { value: _vm.password_confirmation },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.password_confirm = $event.target.value
+                        _vm.password_confirmation = $event.target.value
                       }
                     }
                   })
@@ -17867,7 +17875,11 @@ var render = function() {
                       attrs: { type: "submit" },
                       on: { click: _vm.handleSubmit }
                     },
-                    [_vm._v("Register")]
+                    [
+                      _vm._v(
+                        "\n                                    Register\n                                "
+                      )
+                    ]
                   )
                 ])
               ])

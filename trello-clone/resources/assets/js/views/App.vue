@@ -42,5 +42,5 @@
             this.isLoggedIn = localStorage.getItem('jwt');
             this.name = localStorage.getItem('user');
         }
-    }
+    };
 </script>

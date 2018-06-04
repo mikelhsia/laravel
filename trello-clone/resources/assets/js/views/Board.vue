@@ -119,7 +119,7 @@
 
             next();
         }
-    }
+    };
 </script>
 
 <style scoped>

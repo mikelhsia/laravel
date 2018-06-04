@@ -28,7 +28,7 @@ import App          from './views/App';
 import Dashboard    from './views/Board';
 import Login        from './views/Login';
 import Register     from './views/Register';
-import Welcome      from './views/Welcome';
+import Home         from './views/Welcome';
 
 
 const router = new VueRouter({
@@ -37,7 +37,7 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: Welcome,
+            component: Home,
         },
         {
             path: '/login',
